@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diário de TFM - Cadete G. Borges</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a2a45, #121e33);
+        }
+    </style>
+</head>
+<body class="gradient-bg text-gray-200 min-h-screen">
+    <div class="container mx-auto p-4 sm:p-8 max-w-4xl">
+
+        <!-- Cabeçalho -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-extrabold text-white">Diário de Treinamento Físico Militar</h1>
+            <p class="text-lg text-gray-400 mt-2">A jornada para a excelência começa com disciplina e registro.</p>
+        </header>
+
+        <!-- Seção de Novo Registro -->
+        <section class="bg-gray-800/50 p-6 rounded-2xl shadow-lg mb-8 border border-gray-700">
+            <h2 class="text-2xl font-bold mb-4 text-white border-b border-gray-600 pb-2">Registrar Novo Treino</h2>
+            <form id="training-form" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                
+                <!-- Data do Treino -->
+                <div>
+                    <label for="date" class="block text-sm font-medium text-gray-300 mb-1">Data</label>
+                    <input type="date" id="date" name="date" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 transition">
+                </div>
+
+                <!-- Tipo de Treino -->
+                <div>
+                    <label for="activity-type" class="block text-sm font-medium text-gray-300 mb-1">Atividade</label>
+                    <select id="activity-type" name="activity-type" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 transition">
+                        <option>Corrida</option>
+                        <option>Flexão de Braço</option>
+                        <option>Barra Fixa</option>
+                        <option>Abdominal</option>
+                        <option>Marcha</option>
+                    </select>
+                </div>
+                
+                <!-- Métrica 1: Distância ou Repetições -->
+                <div class="col-span-1">
+                     <label for="metric1-value" class="block text-sm font-medium text-gray-300 mb-1">Distância (km) / Repetições</label>
+                    <input type="number" id="metric1-value" name="metric1-value" placeholder="Ex: 10 ou 50" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 transition">
+                </div>
+
+                <!-- Métrica 2: Tempo -->
+                <div class="col-span-1">
+                     <label for="metric2-value" class="block text-sm font-medium text-gray-300 mb-1">Tempo (minutos)</label>
+                    <input type="number" id="metric2-value" name="metric2-value" placeholder="Ex: 45" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 transition">
+                </div>
+                
+                <!-- Observações -->
+                <div class="sm:col-span-2">
+                    <label for="notes" class="block text-sm font-medium text-gray-300 mb-1">Observações</label>
+                    <textarea id="notes" name="notes" rows="3" placeholder="Ex: Terreno com elevação, senti o joelho..." class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 transition"></textarea>
+                </div>
+                
+                <!-- Botão -->
+                <div class="sm:col-span-2 text-right">
+                    <button type="submit" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-6 rounded-lg transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-cyan-500">
+                        Adicionar ao Diário
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Seção de Histórico de Treinos -->
+        <section class="bg-gray-800/50 p-6 rounded-2xl shadow-lg border border-gray-700">
+            <h2 class="text-2xl font-bold mb-4 text-white border-b border-gray-600 pb-2">Histórico de Treinos</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-gray-700/50 text-xs text-gray-300 uppercase">
+                        <tr>
+                            <th class="p-3">Data</th>
+                            <th class="p-3">Atividade</th>
+                            <th class="p-3">Resultado</th>
+                            <th class="p-3">Tempo</th>
+                            <th class="p-3 hidden sm:table-cell">Observações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="training-log">
+                        <!-- Exemplo de treino -->
+                        <tr class="border-b border-gray-700 hover:bg-gray-700/50 transition">
+                            <td class="p-3 font-medium">31/08/2025</td>
+                            <td class="p-3">Corrida</td>
+                            <td class="p-3">10 km</td>
+                            <td class="p-3">48 min</td>
+                            <td class="p-3 hidden sm:table-cell">Ritmo bom, final forte.</td>
+                        </tr>
+                        <tr class="border-b border-gray-700 hover:bg-gray-700/50 transition">
+                            <td class="p-3 font-medium">30/08/2025</td>
+                            <td class="p-3">Barra Fixa</td>
+                            <td class="p-3">12 reps</td>
+                            <td class="p-3">N/A</td>
+                            <td class="p-3 hidden sm:table-cell">Pegada pronada.</td>
+                        </tr>
+                        <!-- Novas entradas de treino serão adicionadas aqui por JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <!-- 
+    PLANO DE AÇÃO 
+    FASE 2 (JavaScript):
+    1.  Adicionar um 'event listener' ao formulário para o evento 'submit'.
+    2.  Prevenir o comportamento padrão do formulário (event.preventDefault()).
+    3.  Pegar os valores dos inputs (data, atividade, etc.).
+    4.  Criar uma nova linha de tabela (<tr>) e células (<td>) com esses valores.
+    5.  Adicionar a nova linha ao tbody da tabela (com appendChild).
+    6.  (Opcional) Salvar os dados no localStorage para que não sumam ao recarregar.
+
+    FASE 3 (React):
+    1.  Quebrar a UI em componentes: <Header />, <TrainingForm />, <TrainingLogTable />, <TrainingLogItem />.
+    2.  Usar o estado (useState) para gerenciar a lista de treinos.
+    3.  Passar funções como props para o formulário adicionar um novo treino ao estado.
+    4.  Renderizar a tabela dinamicamente a partir do array de estado usando .map().
+
+    FASE 4 (Python/Django):
+    1.  Criar um modelo (Model) no Django para representar um "Treino".
+    2.  Criar uma API REST usando Django REST Framework.
+    3.  A API terá endpoints para: listar treinos (GET), criar um novo treino (POST), deletar (DELETE).
+    4.  No React, usar 'fetch' ou 'axios' (useEffect) para buscar os treinos da sua API e substituir o estado local.
+    5.  A submissão do formulário agora fará uma requisição POST para a sua API.
+    -->
+
+</body>
+</html>
