@@ -43,13 +43,13 @@
                         <option>Flexão de Braço</option>
                         <option>Barra Fixa</option>
                         <option>Abdominal</option>
-                        <option>Marcha</option>
+                        <option>Corda</option>
                     </select>
                 </div>
                 
                 <!-- Métrica 1: Distância ou Repetições -->
                 <div class="col-span-1">
-                     <label for="metric1-value" class="block text-sm font-medium text-gray-300 mb-1">Distância (km) / Repetições</label>
+                     <label for="metric1-value" class="block text-sm font-medium text-gray-300 mb-1">Distância (km) / Repetições / Altura (m)</label>
                     <input type="number" id="metric1-value" name="metric1-value" placeholder="Ex: 10 ou 50" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 transition">
                 </div>
 
@@ -89,7 +89,7 @@
                         </tr>
                     </thead>
                     <tbody id="training-log">
-                        <!-- Exemplo de treino -->
+                        <!-- exemplo de treino -->
                         <tr class="border-b border-gray-700 hover:bg-gray-700/50 transition">
                             <td class="p-3 font-medium">31/08/2025</td>
                             <td class="p-3">Corrida</td>
@@ -104,36 +104,37 @@
                             <td class="p-3">N/A</td>
                             <td class="p-3 hidden sm:table-cell">Pegada pronada.</td>
                         </tr>
-                        <!-- Novas entradas de treino serão adicionadas aqui por JS -->
+                        <!-- novas entradas de treino serão adicionadas aqui por JS -->
                     </tbody>
                 </table>
             </div>
         </section>
     </div>
 
-    <!-- 
-    PLANO DE AÇÃO 
-    FASE 2 (JavaScript):
-    1.  Adicionar um 'event listener' ao formulário para o evento 'submit'.
-    2.  Prevenir o comportamento padrão do formulário (event.preventDefault()).
-    3.  Pegar os valores dos inputs (data, atividade, etc.).
-    4.  Criar uma nova linha de tabela (<tr>) e células (<td>) com esses valores.
-    5.  Adicionar a nova linha ao tbody da tabela (com appendChild).
-    6.  (Opcional) Salvar os dados no localStorage para que não sumam ao recarregar.
+    <script>
 
-    FASE 3 (React):
-    1.  Quebrar a UI em componentes: <Header />, <TrainingForm />, <TrainingLogTable />, <TrainingLogItem />.
-    2.  Usar o estado (useState) para gerenciar a lista de treinos.
-    3.  Passar funções como props para o formulário adicionar um novo treino ao estado.
-    4.  Renderizar a tabela dinamicamente a partir do array de estado usando .map().
+    const form = document.getElementById('training-form');
 
-    FASE 4 (Python/Django):
-    1.  Criar um modelo (Model) no Django para representar um "Treino".
-    2.  Criar uma API REST usando Django REST Framework.
-    3.  A API terá endpoints para: listar treinos (GET), criar um novo treino (POST), deletar (DELETE).
-    4.  No React, usar 'fetch' ou 'axios' (useEffect) para buscar os treinos da sua API e substituir o estado local.
-    5.  A submissão do formulário agora fará uma requisição POST para a sua API.
-    -->
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); //evita recarregar a pagina
+
+        const dateValue = document.getElementById('date').value;
+        const activityValue = document.getElementById('activity-type').value;
+        const metric1Value = document.getElementById('metric1-value').value;
+        const metric2Value = document.getElementById('metric2-value').value;
+        const notesValue = document.getElementById('notes').value;
+
+        //registrar no console por enquanto, alterar onde armazenar depois
+        console.log('--- Novo Treino Registrado ---');
+        console.log('Data:', dateValue);
+        console.log('Atividade:', activityValue);
+        console.log('Métrica 1:', metric1Value);
+        console.log('Métrica 2:', metric2Value);
+        console.log('Observações:', notesValue);
+        
+        form.reset();
+    });
+    </script>
 
 </body>
 </html>
