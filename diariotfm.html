@@ -112,29 +112,39 @@
     </div>
 
     <script>
+        const form = document.getElementById('training-form');
+        const trainingLogTable = document.getElementById('training-log');
 
-    const form = document.getElementById('training-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
 
-    form.addEventListener('submit', function(event) {
-        event.preventDefault(); //evita recarregar a pagina
+            const dateValue = document.getElementById('date').value;
+            const activityValue = document.getElementById('activity-type').value;
+            const metric1Value = document.getElementById('metric1-value').value;
+            const metric2Value = document.getElementById('metric2-value').value;
+            const notesValue = document.getElementById('notes').value;
+            
+            const newRow = document.createElement('tr');
+            newRow.className = 'border-b border-gray-700 hover:bg-gray-700/50 transition';
+            const formattedDate = new Date(dateValue + 'T00:00:00').toLocaleDateString('pt-BR');
+            
+            newRow.innerHTML = `
+                <td class="p-3 font-medium">${formattedDate}</td>
+                <td class="p-3">${activityValue}</td>
+                <td class="p-3">${metric1Value} km/reps</td> 
+                <td class="p-3">${metric2Value ? metric2Value + ' min' : 'N/A'}</td>
+                <td class="p-3 hidden sm:table-cell">${notesValue}</td>
+            `; 
 
-        const dateValue = document.getElementById('date').value;
-        const activityValue = document.getElementById('activity-type').value;
-        const metric1Value = document.getElementById('metric1-value').value;
-        const metric2Value = document.getElementById('metric2-value').value;
-        const notesValue = document.getElementById('notes').value;
-
-        //registrar no console por enquanto, alterar onde armazenar depois
-        console.log('--- Novo Treino Registrado ---');
-        console.log('Data:', dateValue);
-        console.log('Atividade:', activityValue);
-        console.log('Métrica 1:', metric1Value);
-        console.log('Métrica 2:', metric2Value);
-        console.log('Observações:', notesValue);
-        
-        form.reset();
-    });
+            trainingLogTable.appendChild(newRow);
+            
+            form.reset();
+        });
+        // lapidação js
+        // filtrar a categoria para saber se é km/reps/m no metric1
+        // barrar entradas vazias
     </script>
 
 </body>
 </html>
+
